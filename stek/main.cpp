@@ -1,5 +1,6 @@
 #include <iostream>
 #include "steck.h"
+#include "string"
 
 class any
 {
@@ -41,14 +42,40 @@ private:
 	base_holder* held_;
 };
 
+
+bool fun(char *a ) {
+	Steck<char>steck;
+	try {
+		while (*a != '\0') {
+			if (*a == '(') {
+				steck.push(*a);
+			}
+			if(*a == ')') {
+				steck.pop();
+			}
+			a++;
+		}
+		if (steck.Size() == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	catch (out_of_range) {
+		return false;
+	}
+
+}
+
 int main()
 {
 	Steck<int>a;
 	a.push(1);
+	char s[] = "(((()))";
 	
 	
-	
-	cout << a.pop();
+ cout<<fun(s);
 
 
 	return 0;
