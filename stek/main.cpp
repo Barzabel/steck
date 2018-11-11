@@ -45,16 +45,23 @@ private:
 
 bool fun(char *a ) {
 	Steck<char>steck;
-	try {
-		while (*a != '\0') {
-			if (*a == '(') {
-				steck.push(*a);
-			}
-			if(*a == ')') {
-				steck.pop();
-			}
-			a++;
+	
+	while (*a != '\0') {
+		{
+				if (*a == '(')
+				{
+					steck.push(*a);
+				}
+				if (*a == ')') 
+				{
+					if (steck.Size() == 0) {
+						return false;
+					}
+					steck.pop();
+				}
 		}
+			a++;
+	}
 		if (steck.Size() == 0) {
 			return true;
 		}
@@ -62,17 +69,14 @@ bool fun(char *a ) {
 			return false;
 		}
 	}
-	catch (out_of_range) {
-		return false;
-	}
+	
 
-}
 
 int main()
 {
 	Steck<int>a;
 	a.push(1);
-	char s[] = "(((()))";
+	char s[] = "(((( ))))";
 	
 	
  cout<<fun(s);
