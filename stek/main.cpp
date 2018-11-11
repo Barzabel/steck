@@ -1,6 +1,7 @@
 #include <iostream>
-#include "steck.h"
 #include "string"
+#include "steck.h"
+
 
 class any
 {
@@ -68,14 +69,20 @@ bool fun(char *a ) {
 
 }
 
+	
 int main()
 {
 	Steck<int>a;
+	a.push(0);
 	a.push(1);
+	a.push(2);
+	a.push(3);
 	char s[] = "(((()))";
 	
+	cout << a.pop_in_head();
+
 	
- cout<<fun(s);
+ 
 
 
 	return 0;
