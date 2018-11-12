@@ -115,7 +115,7 @@ int fun2(char *a) {
 			}
 			if ((steck1.peek() == '=')) {
 				return steck2.peek();
-				steck1.pop();
+				
 
 			}
 			steck1.pop();
