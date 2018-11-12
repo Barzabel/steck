@@ -72,14 +72,70 @@ bool fun(char *a ) {
 	
 
 
+int fun2(char *a) {
+	Steck<char>steck1;
+	Steck<int>steck2;
+	int res = 0;
+	char *b = a;
+	int i = -1;
+	while (*b != '\0') {
+			b++;
+			i++;
+		}
+	while (i>=0)
+	{
+		steck1.push(*(a+i));
+		i--;
+	}
+	while (steck1.Size() > 0) {
+		if((steck1.peek()!='+')&& (steck1.peek() != '-') && (steck1.peek() != '*') && (steck1.peek() != '/')&& (steck1.peek() != '=') && (steck1.peek() != ' ')){
+		steck2.push(int(steck1.pop() - '0'));
+		}
+		else {
+			if (steck1.peek() == '+') {
+				steck2.push(steck2.pop() + steck2.pop());
+				steck1.pop();
+				continue;
+			}
+			if ((steck1.peek() == '-')) {
+				steck2.push(steck2.pop() - steck2.pop());
+				steck1.pop();
+				continue;
+			}
+			if ((steck1.peek() == '*')) {
+				steck2.push(steck2.pop() * steck2.pop());
+				steck1.pop();
+				continue;
+			}
+			if ((steck1.peek() == '/')) {
+				steck2.push(steck2.pop() / steck2.pop());
+				steck1.pop();
+				continue;
+
+			}
+			if ((steck1.peek() == '=')) {
+				return steck2.peek();
+				steck1.pop();
+
+			}
+			steck1.pop();
+		}
+
+	}
+
+	return steck2.peek() ;
+}
+
+
 int main()
 {
 	Steck<int>a;
 	a.push(1);
-	char s[] = "(((( ))))";
+	char s[] = "8 2 + 5 * 9 + =";
 	
 	
- cout<<fun(s);
+ cout<<fun2(s);
+
 
 
 	return 0;
